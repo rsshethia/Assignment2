@@ -4,6 +4,7 @@ package assignment2;
  *
  * @author rsshethia
  * @author dcclarke
+ * @author ojgoulding
  */
 public class Assignment2 {
 

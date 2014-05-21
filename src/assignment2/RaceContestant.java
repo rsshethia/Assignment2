@@ -5,7 +5,7 @@ import java.util.GregorianCalendar;
 
 /**
  *
- * @author rsshethia
+ * @author Orien
  */
 public class RaceContestant extends Contestant {
 

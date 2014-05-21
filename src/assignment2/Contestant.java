@@ -3,7 +3,6 @@ package assignment2;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.Objects;
 
 /**
  * General contestant class for an event.
@@ -220,12 +219,12 @@ public abstract class Contestant {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + this.mId;
-        hash = 37 * hash + Objects.hashCode(this.mFamilyName);
-        hash = 37 * hash + Objects.hashCode(this.mGivenName);
-        hash = 37 * hash + Objects.hashCode(this.mGender);
-        hash = 37 * hash + Objects.hashCode(this.mDOB);
-        hash = 37 * hash + Objects.hashCode(this.mEmail);
+        hash = 37 * hash + mId;
+        hash = 37 * hash + mFamilyName.hashCode();
+        hash = 37 * hash + mGivenName.hashCode();
+        hash = 37 * hash + mGender.hashCode();
+        hash = 37 * hash + mDOB.hashCode();
+        hash = 37 * hash + mEmail.hashCode();
         return hash;
     }
 

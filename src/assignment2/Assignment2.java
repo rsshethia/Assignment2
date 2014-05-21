@@ -3,6 +3,7 @@ package assignment2;
 /**
  *
  * @author rsshethia
+ * @author dcclarke
  */
 public class Assignment2 {
 

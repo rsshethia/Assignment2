@@ -2,7 +2,7 @@ package assignment2;
 
 /**
  *
- * @author rsshethia
+ * @author RUSHABH
  * @author dcclarke
  * @author ojgoulding
  */

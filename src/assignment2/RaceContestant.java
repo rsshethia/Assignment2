@@ -3,20 +3,27 @@ package assignment2;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
+
 /**
- *
- * @author Orien
+ * Assignment 2 - CSE1IOO Semester 1, 2014.
+ * @author Orien, Dean and Rushabh
+ * @version 1.0
+ * 
+ * RaceContest class is special type contestant which takes part in a race.
  */
+ 
 public class RaceContestant extends Contestant {
 
     public static final RaceStatus DEFAULT_RACESTATUS = RaceStatus.NOT_STARTED;
-    private String mCategory;
-    private GregorianCalendar mStartTime;
-    private GregorianCalendar mFinishTime;
-    private RaceStatus mRaceStatus;
-    private RaceCarnival mRaceCarnival;
+    private String mCategory; /* Race catergory*/
+    private GregorianCalendar mStartTime; /* Starting time of race contestant*/
+    private GregorianCalendar mFinishTime; /* Finishing time of race contestant*/
+    private RaceStatus mRaceStatus; /* Status of race contestant in a race*/
+    private RaceCarnival mRaceCarnival; /* Race Carnival*/
     //mPlacing?? 1st 2nd etc??
 
+
+    /*Constructor*/
     public RaceContestant(int id,
             String familyName,
             String givenName,
@@ -27,6 +34,7 @@ public class RaceContestant extends Contestant {
         this(id, familyName, givenName, gender, DOB, email, category, null, null);
     }
 
+    /*Constructor*/
     public RaceContestant(int id,
             String familyName,
             String givenName,
@@ -41,6 +49,7 @@ public class RaceContestant extends Contestant {
 
     }
 
+    /*Constructor*/
     public RaceContestant(int id,
             String familyName,
             String givenName,
@@ -61,10 +70,12 @@ public class RaceContestant extends Contestant {
 
     }
 
+    /*Constructor*/
     public RaceContestant(RaceContestant contestant) {
         this(contestant, contestant.getRaceCarnival());
     }
     
+    /*Constructor*/
     public RaceContestant(RaceContestant contestant,RaceCarnival carnival) {
         this(contestant.getId(),
                 contestant.getFamilyName(), contestant.getGivenName(),
@@ -74,6 +85,7 @@ public class RaceContestant extends Contestant {
                 carnival);
     }
 
+    /*Set start time for race contestant*/
     public boolean setStartTime() {
         if (mRaceStatus.equals(DEFAULT_RACESTATUS)) {
             mStartTime = new GregorianCalendar();
@@ -84,10 +96,12 @@ public class RaceContestant extends Contestant {
         }
     }
 
+    /*Get start time for race contestant*/
     public GregorianCalendar getStartTime() {
         return mStartTime;
     }
 
+    /*Set finish time for race contestant*/
     public boolean setFinishTime() {
         if (mRaceStatus.equals(RaceStatus.RACING)) {
             mFinishTime = new GregorianCalendar();
@@ -98,10 +112,12 @@ public class RaceContestant extends Contestant {
         }
     }
 
+    /*Get finish time for race contestant*/
     public GregorianCalendar getFinishTime() {
         return mFinishTime;
     }
 
+    /*Calculating time taken by race contestant*/
     public double getTimeTaken() {
         if (mRaceStatus.equals(RaceStatus.FINISHED)) {
             return mFinishTime.compareTo(mStartTime) / 1000.0;
@@ -110,6 +126,7 @@ public class RaceContestant extends Contestant {
         }
     }
 
+    /*Get Status of the race contestant in a race*/
     public RaceStatus getRaceStatus() {
         return mRaceStatus;
     }

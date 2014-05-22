@@ -17,17 +17,21 @@ import java.util.Iterator;
 import java.util.TreeMap;
 
 /**
- *
- * @author rsshethia
+ * Assignment 2 - CSE1IOO Semester 1, 2014.
+ * @author Orien, Dean and Rushabh
+ * @version 1.0
+ * 
+ * RaceCarnival class is to manage race carnival including race contestant details.
  */
 public class RaceCarnival {
 
-    private TreeMap<Integer, RaceContestant> mIDCarnival;
-    private TreeMap<String, RaceContestant> mNameCarnival;
-    private String mName;
-    private GregorianCalendar mDate;
-    private String[] mCategories;
+    private TreeMap<Integer, RaceContestant> mIDCarnival; /* Carnival's Identity Number*/
+    private TreeMap<String, RaceContestant> mNameCarnival; /* Carnival's Name*/
+    private String mName; /* Carnival name*/
+    private GregorianCalendar mDate; /* Carnival date*/
+    private String[] mCategories;/* Race carnival categories*/
 
+    /*Constructor*/
     public RaceCarnival(String name, GregorianCalendar date, String[] categories) {
         mIDCarnival = new TreeMap();
         mNameCarnival = new TreeMap();
@@ -47,6 +51,7 @@ public class RaceCarnival {
         return mCategories.clone();
     }
 
+    /*Adding new race contestant*/
     public boolean addRaceContestant(RaceContestant contestant) {
         boolean add = false;
         boolean validCategory = false;
@@ -66,6 +71,7 @@ public class RaceCarnival {
         return add;
     }
 
+    /*Getting race contestant*/
     public RaceContestant getRaceContestant(int id) {
         RaceContestant contestant2 = new RaceContestant(mIDCarnival.get(id));
         return contestant2;
@@ -90,20 +96,24 @@ public class RaceCarnival {
         return modify;
     }
 
+    /*Deleting race contestant*/
     public RaceContestant deleteContestant(int id) {
         RaceContestant contestant= mIDCarnival.get(id);
         mNameCarnival.remove(contestant.getFamilyName()+","+contestant.getGivenName()+","+contestant.getId());
         return mIDCarnival.remove(id);
     }
 
+    /*Set start time for race contestant*/
     public boolean setStartTime(int id) {
         return mIDCarnival.get(id).setStartTime();
     }
 
+    /*Set finish time for race contestant*/
     public boolean setFinishTime(int id) {
         return mIDCarnival.get(id).setFinishTime();
     }
 
+    /*Calculating time taken by race contestant*/
     public double getTimeTaken(int id) {
         return mIDCarnival.get(id).getTimeTaken();
     }
@@ -129,6 +139,7 @@ public class RaceCarnival {
         return result;
     }
 
+    /*Finding race winners by sorting them as per time taken*/
     public RaceContestant[] sortByTimeTaken() {
         ArrayList<RaceContestant> finishedAL = new ArrayList();
 

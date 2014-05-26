@@ -181,8 +181,41 @@ public class RaceContestant extends Contestant {
         return equal;
     }
 
-    //CopyMethod
-    //compareTo
+//    public int compareTo(Object obj2){
+//        RaceContestant contestant;
+//        int difference;
+//
+//        if (obj2 != null) {
+//            if (obj2.getClass() == this.getClass()) {
+//                contestant = (RaceContestant) obj2;
+//                difference = super.getNum() - task2.getNum();
+//                if (difference == 0) {
+//            difference = mBarCode.compareTo(media2.mBarCode);
+//            if (difference == 0) {
+//                // numbers and names are the same so see if date commenced are different
+//                difference = mTitle.compareTo(media2.mTitle);
+//                if (difference == 0) {
+//                    difference = mDatePurchased.compareTo(media2.mDatePurchased);
+//                    if (difference == 0) {
+//                        difference = ((Double) mCost).compareTo(media2.mCost);
+//                        if (difference == 0) {
+//                            difference = ((Boolean) mIsBorrowed).compareTo(media2.mIsBorrowed);
+//                            if (difference == 0) {
+//                                difference = mBorrower.compareTo(media2.mBorrower);
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//            } else {
+//                throw new RaceContestantException("Objects must be the same class");
+//            }
+//        } else {
+//            throw new RaceContestantException("Object must not be null");
+//        }
+//        return difference;
+//    }
     //Any More methods???
     @Override
     public String toString() {

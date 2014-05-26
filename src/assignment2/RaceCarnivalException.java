@@ -1,9 +1,14 @@
 package assignment2;
 
 /**
- *
- * @author oriengoulding
+ * Assignment 2 - CSE1IOO Semester 1, 2014.
+ * @author Orien, Dean and Rushabh
+ * @version 1.0
+ * 
+ * RaceCarnivalException class is to handle exceptions from 
+ * RaceCarnical constructor in RaceCarnival class.
  */
+
 public class RaceCarnivalException extends RuntimeException {
 
     /**

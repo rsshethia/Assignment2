@@ -9,21 +9,33 @@ import java.util.GregorianCalendar;
  * @author Orien, Dean and Rushabh
  * @version 1.0
  * 
- * RaceContest class is special type contestant which takes part in a race.
+ * RaceContestant Class.
+ * Race Contestant is special type of contestant who takes part in a race.
+ * 
  */
  
 public class RaceContestant extends Contestant {
 
-    public static final RaceStatus DEFAULT_RACESTATUS = RaceStatus.NOT_STARTED;
-    private String mCategory; /* Race catergory*/
-    private GregorianCalendar mStartTime; /* Starting time of race contestant*/
-    private GregorianCalendar mFinishTime; /* Finishing time of race contestant*/
-    private RaceStatus mRaceStatus; /* Status of race contestant in a race*/
-    private RaceCarnival mRaceCarnival; /* Race Carnival*/
+    public static final RaceStatus DEFAULT_RACESTATUS = RaceStatus.NOT_STARTED; /*Default race status for contestant*/
+    
+    private String mCategory;              // Race catergory
+    private GregorianCalendar mStartTime;  //Starting time of race contestant
+    private GregorianCalendar mFinishTime; // Finishing time of race contestant
+    private RaceStatus mRaceStatus;        // Status of race contestant in a race*/
+    private RaceCarnival mRaceCarnival;    //Race Carnival
     //mPlacing?? 1st 2nd etc??
 
 
-    /*Constructor*/
+    /**
+     * Constructor of RaceContestant Class
+     * @param id               An unique id for each contestant
+     * @param familyName       A String for contestant's Family Name
+     * @param givenName        A String for contestant's Given Name
+     * @param gender           A GenderType of contestant
+     * @param DOB              A Date for contestant's date of birth
+     * @param email            A String for contestant's email id
+     * @param category         A String for contestant's race category
+     */
     public RaceContestant(int id,
             String familyName,
             String givenName,
@@ -34,7 +46,18 @@ public class RaceContestant extends Contestant {
         this(id, familyName, givenName, gender, DOB, email, category, null, null);
     }
 
-    /*Constructor*/
+    /**
+     * Constructor of RaceContestant Class 
+     * @param id               An unique id for each contestant
+     * @param familyName       A String for contestant's Family Name
+     * @param givenName        A String for contestant's Given Name
+     * @param gender           A GenderType of contestant
+     * @param DOB              A Date for contestant's date of birth
+     * @param email            A String for contestant's email id
+     * @param category         A String for contestant's race category
+     * @param startTime        Start time of contestant
+     * @param finishTime       Finish time of contestant
+     */
     public RaceContestant(int id,
             String familyName,
             String givenName,
@@ -49,7 +72,21 @@ public class RaceContestant extends Contestant {
 
     }
 
-    /*Constructor*/
+    /**
+     * Constructor of RaceContestant Class
+     * This initializes all data members and allows appropriate data members to be set.
+     * @param id               An unique id for each contestant
+     * @param familyName       A String for contestant's Family Name
+     * @param givenName        A String for contestant's Given Name
+     * @param gender           A GenderType of contestant
+     * @param DOB              A Date for contestant's date of birth
+     * @param email            A String for contestant's email id
+     * @param category         A String for contestant's race category
+     * @param startTime        Start time of contestant
+     * @param finishTime       Finish time of contestant
+     * @param carnival         Reference to RaceCarnival to which the contestant belongs
+     */
+     
     public RaceContestant(int id,
             String familyName,
             String givenName,
@@ -70,12 +107,20 @@ public class RaceContestant extends Contestant {
 
     }
 
-    /*Constructor*/
+    /**
+     * Constructor of RaceContestant class
+     * 
+     * Copy constructor
+     */
     public RaceContestant(RaceContestant contestant) {
         this(contestant, contestant.getRaceCarnival());
     }
     
-    /*Constructor*/
+    /**
+     * Constructor of RaceContestant class
+     * 
+     * Copies contestant and initialises RaceCarnival
+     */
     public RaceContestant(RaceContestant contestant,RaceCarnival carnival) {
         this(contestant.getId(),
                 contestant.getFamilyName(), contestant.getGivenName(),
@@ -85,7 +130,9 @@ public class RaceContestant extends Contestant {
                 carnival);
     }
 
-    /*Set start time for race contestant*/
+    /**
+     * Set contestant's start time
+     */
     public boolean setStartTime() {
         if (mRaceStatus.equals(DEFAULT_RACESTATUS)) {
             mStartTime = new GregorianCalendar();
@@ -96,12 +143,18 @@ public class RaceContestant extends Contestant {
         }
     }
 
-    /*Get start time for race contestant*/
+    /**
+     * Get contestant's start time.
+     * 
+     * @return time, start time of contestant.
+     */
     public GregorianCalendar getStartTime() {
         return mStartTime;
     }
 
-    /*Set finish time for race contestant*/
+    /**
+     * Set contestant's finish time
+     */
     public boolean setFinishTime() {
         if (mRaceStatus.equals(RaceStatus.RACING)) {
             mFinishTime = new GregorianCalendar();
@@ -112,12 +165,19 @@ public class RaceContestant extends Contestant {
         }
     }
 
-    /*Get finish time for race contestant*/
+    /**
+     * Get contestant's finish time.
+     * 
+     * @return time, finsih time of contestant.
+     */
     public GregorianCalendar getFinishTime() {
         return mFinishTime;
     }
 
-    /*Calculating time taken by race contestant*/
+    /**
+     * Calculate time taken by race contestant with help of start and finish time.
+     * It helps to determine the winner of the race.
+    */
     public double getTimeTaken() {
         if (mRaceStatus.equals(RaceStatus.FINISHED)) {
             return mFinishTime.compareTo(mStartTime) / 1000.0;
@@ -126,16 +186,29 @@ public class RaceContestant extends Contestant {
         }
     }
 
-    /*Get Status of the race contestant in a race*/
+    /**
+     * Get Status of the race contestant in a race
+     * 
+     * @return RaceStatus of race contestant.
+     */
     public RaceStatus getRaceStatus() {
         return mRaceStatus;
     }
 
+    /**
+     * Get race category for the race carnival
+     * 
+     * @return mCategory, a race category
+     */
     @Override
     public String getCategory() {
         return mCategory;
     }
 
+    /**
+     * Set race category for the race carnival
+     *
+     */
     @Override
     public boolean setCategory(String category) {
         if (mRaceCarnival == null) {
@@ -157,16 +230,22 @@ public class RaceContestant extends Contestant {
         }
     }
 
-//?? Possible to only be accessed by RaceCarnival?????        
+    /**
+     * Get race carnival
+     * 
+     * @return mRaceCarnival.
+     */
     public RaceCarnival getRaceCarnival() {
         return mRaceCarnival;
     }
 
+    /**
+     * Compare the specified object and this item for equality
+     */
     @Override
     public boolean equals(Object obj2) {
         RaceContestant contestant;
         boolean equal = false;
-
         if (obj2 != null && obj2.getClass() == this.getClass()) {
             contestant = (RaceContestant) obj2;
             if (super.equals(obj2)
@@ -181,42 +260,12 @@ public class RaceContestant extends Contestant {
         return equal;
     }
 
-//    public int compareTo(Object obj2){
-//        RaceContestant contestant;
-//        int difference;
-//
-//        if (obj2 != null) {
-//            if (obj2.getClass() == this.getClass()) {
-//                contestant = (RaceContestant) obj2;
-//                difference = super.getNum() - task2.getNum();
-//                if (difference == 0) {
-//            difference = mBarCode.compareTo(media2.mBarCode);
-//            if (difference == 0) {
-//                // numbers and names are the same so see if date commenced are different
-//                difference = mTitle.compareTo(media2.mTitle);
-//                if (difference == 0) {
-//                    difference = mDatePurchased.compareTo(media2.mDatePurchased);
-//                    if (difference == 0) {
-//                        difference = ((Double) mCost).compareTo(media2.mCost);
-//                        if (difference == 0) {
-//                            difference = ((Boolean) mIsBorrowed).compareTo(media2.mIsBorrowed);
-//                            if (difference == 0) {
-//                                difference = mBorrower.compareTo(media2.mBorrower);
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//            } else {
-//                throw new RaceContestantException("Objects must be the same class");
-//            }
-//        } else {
-//            throw new RaceContestantException("Object must not be null");
-//        }
-//        return difference;
-//    }
-    //Any More methods???
+    /**
+     * Gives a String representation of this item
+     * 
+     * @returns result, a String representation of this item including the name of the
+     * class and data member names and values
+     */
     @Override
     public String toString() {
         String result;

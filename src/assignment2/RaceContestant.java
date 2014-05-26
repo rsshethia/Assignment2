@@ -131,7 +131,7 @@ public class RaceContestant extends Contestant {
     }
 
     /**
-     * Set contestant's start time
+     * Set contestant start time
      */
     public boolean setStartTime() {
         if (mRaceStatus.equals(DEFAULT_RACESTATUS)) {
@@ -144,7 +144,7 @@ public class RaceContestant extends Contestant {
     }
 
     /**
-     * Get contestant's start time.
+     * Get contestant start time.
      * 
      * @return time, start time of contestant.
      */
@@ -153,7 +153,7 @@ public class RaceContestant extends Contestant {
     }
 
     /**
-     * Set contestant's finish time
+     * Set contestant finish time
      */
     public boolean setFinishTime() {
         if (mRaceStatus.equals(RaceStatus.RACING)) {
@@ -166,9 +166,9 @@ public class RaceContestant extends Contestant {
     }
 
     /**
-     * Get contestant's finish time.
+     * Get contestant finish time.
      * 
-     * @return time, finsih time of contestant.
+     * @return time, finish time of contestant.
      */
     public GregorianCalendar getFinishTime() {
         return mFinishTime;
@@ -246,16 +246,21 @@ public class RaceContestant extends Contestant {
     public boolean equals(Object obj2) {
         RaceContestant contestant;
         boolean equal = false;
-        if (obj2 != null && obj2.getClass() == this.getClass()) {
-            contestant = (RaceContestant) obj2;
-            if (super.equals(obj2)
-                    && contestant.getCategory().equals(mCategory)
-                    && contestant.getStartTime().equals(mStartTime)
-                    && contestant.getFinishTime().equals(mFinishTime)
-                    && contestant.getRaceStatus().equals(mRaceStatus)                    
-                    && contestant.getRaceCarnival() == mRaceCarnival) {
-                equal = true;
+
+        if (obj2 != this) {
+            if (obj2 != null && obj2.getClass() == this.getClass()) {
+                contestant = (RaceContestant) obj2;
+                if (super.equals(obj2)
+                        && contestant.getCategory().equals(mCategory)
+                        && contestant.getStartTime().equals(mStartTime)
+                        && contestant.getFinishTime().equals(mFinishTime)
+                        && contestant.getRaceStatus().equals(mRaceStatus)
+                        && contestant.getRaceCarnival() == mRaceCarnival) {
+                    equal = true;
+                }
             }
+        } else {
+            equal = true;
         }
         return equal;
     }

@@ -41,7 +41,7 @@ public class RaceCarnival {
     *
     */
     
-    public RaceCarnival(String name, GregorianCalendar date, String[] categories) {
+ public RaceCarnival(String name, GregorianCalendar date, String[] categories) {
         mIDCarnival = new TreeMap();
         mNameCarnival = new TreeMap();
         mName = name;
@@ -73,9 +73,9 @@ public class RaceCarnival {
                 && contestant.getRaceCarnival().equals(null)
                 && validCategory) {
 
-            RaceContestant contestant2 = new RaceContestant(contestant,this);
-            
-            mNameCarnival.put(contestant2.getFamilyName()+","+contestant2.getGivenName()+","+contestant2.getId(), contestant2);
+            RaceContestant contestant2 = new RaceContestant(contestant, this);
+
+            mNameCarnival.put(contestant2.getFamilyName() + "," + contestant2.getGivenName() + "," + contestant2.getId(), contestant2);
             mIDCarnival.put(contestant2.getId(), contestant2);
             add = true;
         }
@@ -121,29 +121,29 @@ public class RaceCarnival {
      * @param id, particular contestant is removed from the list.
     */
     public RaceContestant deleteContestant(int id) {
-        RaceContestant contestant= mIDCarnival.get(id);
-        mNameCarnival.remove(contestant.getFamilyName()+","+contestant.getGivenName()+","+contestant.getId());
+        RaceContestant contestant = mIDCarnival.get(id);
+        mNameCarnival.remove(contestant.getFamilyName() + "," + contestant.getGivenName() + "," + contestant.getId());
         return mIDCarnival.remove(id);
     }
 
     /**
-     * Set contestant's start time
+     * Set contestant start time
      */
     public boolean setStartTime(int id) {
         return mIDCarnival.get(id).setStartTime();
     }
 
     /**
-     * Set contestant's finish time
+     * Set contestant finish time
      */
     public boolean setFinishTime(int id) {
         return mIDCarnival.get(id).setFinishTime();
     }
 
     /**
-     * Get contestant's finish time.
+     * Get contestant finish time.
      * 
-     * @return time, finsih time of contestant.
+     * @return time, finish time of contestant.
      */
     public double getTimeTaken(int id) {
         return mIDCarnival.get(id).getTimeTaken();
@@ -246,7 +246,7 @@ public class RaceCarnival {
     /**
      * Specifies the order of a sort.
      */
-    private class SortOrder implements Comparator {       
+    private class SortOrder implements Comparator {
 
         @Override
         public int compare(Object obj1, Object obj2) {
@@ -278,14 +278,14 @@ public class RaceCarnival {
 
 //??Check requirements with Tim????    
     public boolean loadFile(String inFileName) {
-        boolean noError=false;
+        boolean noError = false;
         String lineOfText;
         BufferedReader inFile;
         String[] fields;
         int id;
         String familyName;
         String givenName;
-        GenderType gender=null;
+        GenderType gender = null;
         GregorianCalendar DOB;
         String email;
         String category;
@@ -306,22 +306,22 @@ public class RaceCarnival {
         try {
             inFile = new BufferedReader(new FileReader(inFileName));
             lineOfText = inFile.readLine();
-    //??
-            noError=true;
+            //??
+            noError = true;
             while (lineOfText != null && noError) {
                 fields = lineOfText.split(",[ \t]*");
-                
-                if (fields[3].trim().equals("M")) {
-                        gender = GenderType.MALE;
-                    }else if (fields[3].trim().equals("F")) {
-                        gender = GenderType.FEMALE;
-                    }
 
-                if (isValidInt(fields[0].trim()) && isValidDate(fields[4].trim())&&isValidTime(fields[6].trim())&&isValidTime(fields[7].trim())&& gender!=null) {
+                if (fields[3].trim().equals("M")) {
+                    gender = GenderType.MALE;
+                } else if (fields[3].trim().equals("F")) {
+                    gender = GenderType.FEMALE;
+                }
+
+                if (isValidInt(fields[0].trim()) && isValidDate(fields[4].trim()) && isValidTime(fields[6].trim()) && isValidTime(fields[7].trim()) && gender != null) {
                     id = Integer.parseInt(fields[0].trim());
                     familyName = fields[1].trim();
                     givenName = fields[2].trim();
-                    
+
                     DOB.setTime(dateFormat.parse(fields[4].trim()));
                     email = fields[5].trim();
                     category = fields[6].trim();
@@ -333,22 +333,22 @@ public class RaceCarnival {
 
                 } else {
 
-                    noError=false;
+                    noError = false;
                 }
                 lineOfText = inFile.readLine();
             }
             inFile.close();
 
         } catch (FileNotFoundException e) {
-            noError=false;
+            noError = false;
         } catch (EOFException e) {
-            noError=false;
+            noError = false;
         } catch (IOException e) {
-            noError=false;
+            noError = false;
         } catch (ParseException e) {
-            noError=false;
+            noError = false;
         } catch (NumberFormatException e) {
-            noError=false;
+            noError = false;
         }
         return noError;
     }

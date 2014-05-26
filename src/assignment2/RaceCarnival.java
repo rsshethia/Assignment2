@@ -85,7 +85,7 @@ public class RaceCarnival {
     /**
      * Get Race contestant, with help of id. Unique to each contestant.
      * 
-     * @return details of contestant.
+     * @return contestant2, details of contestant from RaceContestant.
      */ 
     public RaceContestant getRaceContestant(int id) {
         RaceContestant contestant2 = new RaceContestant(mIDCarnival.get(id));

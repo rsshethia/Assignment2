@@ -21,7 +21,8 @@ import java.util.TreeMap;
  * @author Orien, Dean and Rushabh
  * @version 1.0
  * 
- * RaceCarnival class is to manage race carnival including race contestant details.
+ * RaceCarnival class.
+ * It is to manage race carnival. It includes details of race contestants participating in it.
  */
 public class RaceCarnival {
 
@@ -31,7 +32,15 @@ public class RaceCarnival {
     private GregorianCalendar mDate; /* Carnival date*/
     private String[] mCategories;/* Race carnival categories*/
 
-    /*Constructor*/
+    /**
+     * Constructor of RaceCarnival class
+    *
+    * @param name          An String for carnival's name'
+    * @param date          A date carnival being held
+    * @param categories    An String for categories in the race carnival.
+    *
+    */
+    
     public RaceCarnival(String name, GregorianCalendar date, String[] categories) {
         mIDCarnival = new TreeMap();
         mNameCarnival = new TreeMap();
@@ -51,7 +60,9 @@ public class RaceCarnival {
         return mCategories.clone();
     }
 
-    /*Adding new race contestant*/
+    /** 
+     * Adding new race contestant 
+     */
     public boolean addRaceContestant(RaceContestant contestant) {
         boolean add = false;
         boolean validCategory = false;
@@ -71,12 +82,21 @@ public class RaceCarnival {
         return add;
     }
 
-    /*Getting race contestant*/
+    /**
+     * Get Race contestant, with help of id. Unique to each contestant.
+     * 
+     * @return details of contestant.
+     */ 
     public RaceContestant getRaceContestant(int id) {
         RaceContestant contestant2 = new RaceContestant(mIDCarnival.get(id));
         return contestant2;
     }
 
+    /**
+     * Modify Race contestant, with help of id. Unique to each contestant.
+     * 
+     * @param contestant, a new race contestant is passed.
+     */ 
     public RaceContestant modifyContestant(RaceContestant contestant) {
         RaceContestant modify = null;
         boolean validCategory = false;
@@ -95,24 +115,36 @@ public class RaceCarnival {
         return modify;
     }
 
-    /*Deleting race contestant*/
+    /**
+     * Deleting race contestant, with help of id. Unique to each contestant.
+     * 
+     * @param id, particular contestant is removed from the list.
+    */
     public RaceContestant deleteContestant(int id) {
         RaceContestant contestant= mIDCarnival.get(id);
         mNameCarnival.remove(contestant.getFamilyName()+","+contestant.getGivenName()+","+contestant.getId());
         return mIDCarnival.remove(id);
     }
 
-    /*Set start time for race contestant*/
+    /**
+     * Set contestant's start time
+     */
     public boolean setStartTime(int id) {
         return mIDCarnival.get(id).setStartTime();
     }
 
-    /*Set finish time for race contestant*/
+    /**
+     * Set contestant's finish time
+     */
     public boolean setFinishTime(int id) {
         return mIDCarnival.get(id).setFinishTime();
     }
 
-    /*Calculating time taken by race contestant*/
+    /**
+     * Get contestant's finish time.
+     * 
+     * @return time, finsih time of contestant.
+     */
     public double getTimeTaken(int id) {
         return mIDCarnival.get(id).getTimeTaken();
     }
@@ -129,6 +161,9 @@ public class RaceCarnival {
         }
     }
     
+    /**
+     * Compare the specified object and this item for equality
+     */
     public boolean equals(Object obj2){
         RaceCarnival carnival;
         boolean equal = false;
@@ -159,6 +194,12 @@ public class RaceCarnival {
         }
     }
 
+    /**
+     * Gives a String representation of this item
+     * 
+     * @returns result, a String representation of this item including the name of the
+     * class and data member names and values
+     */
     @Override
     public String toString() {
         String result;
@@ -180,7 +221,10 @@ public class RaceCarnival {
         return result;
     }
 
-    /*Finding race winners by sorting them as per time taken*/
+    /**
+     * Sort contestants as per time taken by them.
+     * Helps to determine the winner.
+     */
     public RaceContestant[] sortByTimeTaken() {
         ArrayList<RaceContestant> finishedAL = new ArrayList();
 
@@ -210,6 +254,10 @@ public class RaceCarnival {
         }
     }
 
+    /**
+     * Gives winner of the race.
+     * 
+     */
     public RaceContestant winner() {
         RaceContestant winner = null;
         Iterator<RaceContestant> iter = mIDCarnival.values().iterator();
@@ -377,6 +425,9 @@ public class RaceCarnival {
     
     //Teams of 3 Only
     
+     /**
+      * Search contestant name from the given String key.
+      */ 
      public RaceContestant[] nameSearch(String key) {
 
         ArrayList<RaceContestant> nameList = new ArrayList();

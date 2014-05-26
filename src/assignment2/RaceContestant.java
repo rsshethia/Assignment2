@@ -29,12 +29,12 @@ public class RaceContestant extends Contestant {
     /**
      * Constructor of RaceContestant Class
      * @param id               An unique id for each contestant
-     * @param familyName       A String for contestant's Family Name
-     * @param givenName        A String for contestant's Given Name
+     * @param familyName       A String for contestant Family Name
+     * @param givenName        A String for contestant Given Name
      * @param gender           A GenderType of contestant
-     * @param DOB              A Date for contestant's date of birth
-     * @param email            A String for contestant's email id
-     * @param category         A String for contestant's race category
+     * @param DOB              A Date for contestant date of birth
+     * @param email            A String for contestant email id
+     * @param category         A String for contestant race category
      */
     public RaceContestant(int id,
             String familyName,
@@ -49,12 +49,12 @@ public class RaceContestant extends Contestant {
     /**
      * Constructor of RaceContestant Class 
      * @param id               An unique id for each contestant
-     * @param familyName       A String for contestant's Family Name
-     * @param givenName        A String for contestant's Given Name
+     * @param familyName       A String for contestant Family Name
+     * @param givenName        A String for contestant Given Name
      * @param gender           A GenderType of contestant
-     * @param DOB              A Date for contestant's date of birth
-     * @param email            A String for contestant's email id
-     * @param category         A String for contestant's race category
+     * @param DOB              A Date for contestant date of birth
+     * @param email            A String for contestant email id
+     * @param category         A String for contestant race category
      * @param startTime        Start time of contestant
      * @param finishTime       Finish time of contestant
      */
@@ -76,12 +76,12 @@ public class RaceContestant extends Contestant {
      * Constructor of RaceContestant Class
      * This initializes all data members and allows appropriate data members to be set.
      * @param id               An unique id for each contestant
-     * @param familyName       A String for contestant's Family Name
-     * @param givenName        A String for contestant's Given Name
+     * @param familyName       A String for contestant Family Name
+     * @param givenName        A String for contestant Given Name
      * @param gender           A GenderType of contestant
-     * @param DOB              A Date for contestant's date of birth
-     * @param email            A String for contestant's email id
-     * @param category         A String for contestant's race category
+     * @param DOB              A Date for contestant date of birth
+     * @param email            A String for contestant email id
+     * @param category         A String for contestant race category
      * @param startTime        Start time of contestant
      * @param finishTime       Finish time of contestant
      * @param carnival         Reference to RaceCarnival to which the contestant belongs

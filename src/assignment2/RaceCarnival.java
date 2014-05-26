@@ -26,14 +26,14 @@ import java.util.TreeMap;
  */
 public class RaceCarnival {
 
-    private TreeMap<Integer, RaceContestant> mIDCarnival; /* Carnival's Identity Number*/
-    private TreeMap<String, RaceContestant> mNameCarnival; /* Carnival's Name*/
-    private String mName; /* Carnival name*/
-    private GregorianCalendar mDate; /* Carnival date*/
-    private String[] mCategories;/* Race carnival categories*/
+    private TreeMap<Integer, RaceContestant> mIDCarnival;  // Carnival's Identity Number
+    private TreeMap<String, RaceContestant> mNameCarnival; // Carnival's Name
+    private String mName;                                  // Carnival name
+    private GregorianCalendar mDate;                       // Carnival date
+    private String[] mCategories;                          // Race carnival categories
 
     /**
-     * Constructor of RaceCarnival class
+    * Constructor of RaceCarnival class
     *
     * @param name          An String for carnival's name'
     * @param date          A date carnival being held

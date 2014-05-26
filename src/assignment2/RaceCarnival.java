@@ -84,14 +84,13 @@ public class RaceCarnival {
             validCategory = mCategories[i].equals(contestant.getCategory());
         }
         if (mIDCarnival.containsKey(contestant.getId())
-//??Should be == ??*******************************************************                
-                && contestant.getRaceCarnival().equals(this)
+                && contestant.getRaceCarnival() == this
                 && validCategory) {
 
-            RaceContestant contestant2 = new RaceContestant(contestant,this);
-            
+            RaceContestant contestant2 = new RaceContestant(contestant, this);
+
             modify = mIDCarnival.put(contestant2.getId(), contestant2);
-            mNameCarnival.put(contestant2.getFamilyName()+","+contestant2.getGivenName()+","+contestant2.getId(), contestant2);
+            mNameCarnival.put(contestant2.getFamilyName() + "," + contestant2.getGivenName() + "," + contestant2.getId(), contestant2);
         }
         return modify;
     }
@@ -116,6 +115,48 @@ public class RaceCarnival {
     /*Calculating time taken by race contestant*/
     public double getTimeTaken(int id) {
         return mIDCarnival.get(id).getTimeTaken();
+    }
+    
+     public TreeMap<Integer, RaceContestant> getContestantTree(){
+        
+        
+        Iterator<RaceContestant> iter = mIDCarnival.values().iterator();
+        while (iter.hasNext()) {
+            RaceContestant contestant = iter.next();
+            if (contestant.getRaceStatus().equals(RaceStatus.FINISHED)) {
+                finishedAL.add(new RaceContestant(contestant));
+            }
+        }
+    }
+    
+    public boolean equals(Object obj2){
+        RaceCarnival carnival;
+        boolean equal = false;
+
+        if (obj2 != this) {
+            if (obj2 != null && obj2.getClass() == this.getClass()) {
+                carnival = (RaceCarnival) obj2;
+                Iterator<RaceContestant> iter2 = carnival.values().iterator();
+                Iterator<RaceContestant> iter = mIDCarnival.values().iterator();
+        while (iter.hasNext()) {
+            RaceContestant contestant = iter.next();
+            if (contestant.equals(RaceStatus.FINISHED)) {
+                finishedAL.add(new RaceContestant(contestant));
+            }
+                if (super.equals(obj2)
+                        && contestant.getCategory().equals(mCategory)
+                        && contestant.getStartTime().equals(mStartTime)
+                        && contestant.getFinishTime().equals(mFinishTime)
+                        && contestant.getRaceStatus().equals(mRaceStatus)
+                        && contestant.getRaceCarnival() == mRaceCarnival) {
+                    equal = true;
+                }
+            }
+        } else {
+            equal = true;
+        }
+        return equal;
+        }
     }
 
     @Override
@@ -274,7 +315,7 @@ public class RaceCarnival {
         }
         return valid;
     }
-
+    
 //Ok??    
     public static boolean isValidDate(String query) {
         boolean valid = false;
@@ -303,7 +344,7 @@ public class RaceCarnival {
         return valid;
     }
     
-    public boolean saveFile(String outFileName) {
+    public boolean saveFileID(String outFileName) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
         SimpleDateFormat dateFormat2 = new SimpleDateFormat("hh:mm:ss.sss");
         String lineOfText;
@@ -320,7 +361,7 @@ public class RaceCarnival {
                         + contestant.getFamilyName() + ","
                         + contestant.getGivenName() + ","
                         + contestant.getGender().toString() + ","
-                        + dateFormat.format(contestant.getDOB())+","
+                        + dateFormat.format(contestant.getDOB()) + ","
                         + contestant.getEMail() + ","
                         + contestant.getCategory() + ","
                         + dateFormat2.format(contestant.getStartTime()) + ","
@@ -336,12 +377,56 @@ public class RaceCarnival {
     
     //Teams of 3 Only
     
-    public RaceContestant[] nameSearch(String key){
-        
-        
-        
-        return null;
-        
+     public RaceContestant[] nameSearch(String key) {
+
+        ArrayList<RaceContestant> nameList = new ArrayList();
+        String higherKey = null;
+        String ceilingKey = mNameCarnival.ceilingKey(key);
+
+        if (ceilingKey != null && ceilingKey.substring(0, key.length()).equals(key)) {
+            nameList.add(mNameCarnival.get(ceilingKey));
+            higherKey = mNameCarnival.higherKey(ceilingKey);
+        }
+        while (higherKey != null && higherKey.substring(0, key.length()).equals(key)) {
+            nameList.add(mNameCarnival.get(higherKey));
+            higherKey = mNameCarnival.higherKey(higherKey);
+        }
+
+        return nameList.toArray(new RaceContestant[nameList.size()]);
     }
-    
+
+    public boolean saveFileName(String outFileName) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("hh:mm:ss.sss");
+        String lineOfText;
+        BufferedWriter outFile;
+        boolean created = false;
+        Iterator<RaceContestant> iter = mNameCarnival.values().iterator();
+
+        try {
+            outFile = new BufferedWriter(new FileWriter(outFileName));
+            outFile.write(String.format("%14s|%12s|%8s|%6s|%13s|%23s|%23s|%12s|%12s ",
+                    "Family Name", "Given Name", "ID", "Gender",
+                    "Birth Date", "Email", "Caregory", "Start Time", "Finish Time"));
+            while (iter.hasNext()) {
+                RaceContestant contestant = iter.next();
+
+                outFile.write(String.format("%14s|%12s|%8d| %5s| %12s|%23s|%23s|%12s|%12s|%n",
+                        contestant.getFamilyName(),
+                        contestant.getGivenName(),
+                        contestant.getId(),
+                        contestant.getGender().toString(),
+                        dateFormat.format(contestant.getDOB()),
+                        contestant.getEMail(),
+                        contestant.getCategory(),
+                        dateFormat2.format(contestant.getStartTime()),
+                        dateFormat.format(contestant.setFinishTime())));
+            }
+            outFile.close();
+            created = true;
+        } catch (IOException e) {
+            created = false;
+        }
+        return created;
+    }
 }
